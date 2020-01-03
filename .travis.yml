@@ -1,5 +1,16 @@
 sudo: required
+
+#os services são programas que o travis CI precisa ter para executar seu processo de integração contínua
 services:
     - docker
+
+#essa tag diz o que deve ocorrer antes da fase de testes do processo de CI
 before_install:
     - docker build -f Dockerfile.dev -t pedroprado/react-app .
+
+#tag que diz os comandos a serem executados na fase de testes
+script:
+    # originalmente, o npm run test espera uma entrada para executar
+    # um tipo de teste. A adição do "-- --coverage" para forçar a execução
+    # e saída do "npm run test"
+    - docker run pedroprado/react-app npm run test -- --coverage
