@@ -3,7 +3,7 @@ FROM node:alpine as builder
 WORKDIR '/app'
 COPY package.json ./
 RUN npm install
-COPY . .
+COPY ./ ./
 RUN npm run build
 
 #fase 2: fase de run (usando um segundo FROM, o docker automaticamente descarta a imagem anterior)
