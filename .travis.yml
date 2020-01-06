@@ -14,3 +14,18 @@ script:
     # um tipo de teste. A adição do "-- --coverage" para forçar a execução
     # e saída do "npm run test"
     - docker run pedroprado/react-app npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker-react"
+    env: "DockerReact-env"
+    #bucket = é o nome do disco onde está o app
+    bucket_name: "elasticbeanstalk-us-east-2-702988789672"
+    #default= é o mesmo nome que o "app"
+    bucket_path: "docker-react"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
