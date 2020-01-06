@@ -13,4 +13,5 @@ EXPOSE 80
 #aqui estamos copiando tudo o que foi produzido na fase de build (arquivos para produção) para se disponibilizado pelo ngnix em produção    
 COPY --from=builder /app/build /usr/share/ngnix/html
 
+#nginx: servidor para aplicação
 
