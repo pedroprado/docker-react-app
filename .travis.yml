@@ -10,10 +10,10 @@ before_install:
 
 #tag que diz os comandos a serem executados na fase de testes
 script:
-    # originalmente, o npm run test espera uma entrada para executar
-    # um tipo de teste. A adição do "-- --coverage" para forçar a execução
+    # originalmente, o npm run test espera uma entrada para executar os testes
+    # -e CI=true força a execução apenas uma vez
     # e saída do "npm run test"
-    - docker run pedroprado/react-app npm run test -- --coverage
+    - docker run -e CI=true pedroprado/react-app npm run test
 
 deploy:
     provider: elasticbeanstalk
