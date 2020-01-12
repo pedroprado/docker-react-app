@@ -15,6 +15,8 @@ script:
     # e saída do "npm run test"
     - docker run -e CI=true pedroprado/react-app npm run test
 
+    # na verdade essa fase de deploy empurra o código para o EB
+    # EB vai fazer a compilação (build) e gerar a versão de produção
 deploy:
     provider: elasticbeanstalk
     region: "us-east-2"
