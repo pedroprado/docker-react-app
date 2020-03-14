@@ -285,7 +285,7 @@ Documentation: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_
 
 
 Dockerrun file should look like:
-{
+```json{
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions":[  
         {
@@ -311,8 +311,7 @@ Dockerrun file should look like:
             "name": "server",
             "image": "phsprado/complex-server",
             "hostname": "api",
-            "essential": false 
-            
+            "essential": false  
         },
         {
             "name": "worker",
@@ -320,9 +319,9 @@ Dockerrun file should look like:
             "hostname": "worker",
             "essential": false
         }
- 
     ]
 }
+```
 
 Note: Json does not permit comment. The comments must be removed for it to be a valid json.
 
