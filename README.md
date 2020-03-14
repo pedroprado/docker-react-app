@@ -61,6 +61,7 @@ Structure:
 		“Create image of node-app”
 
 Example: docker-compose.yml
+```yaml
 version: '3'
 services:
   redis-server: 
@@ -69,6 +70,7 @@ services:
     build: .
     ports:
       - "8002:9000"
+```
 
 
 Docker compose start commands:
@@ -98,6 +100,7 @@ on-failure: try to restart when a failure occurred
 unless-stopped: always restart, unless we (developers) say not to
 
 Example of “restart = always”
+```yaml
 version: '3'
 services:
   redis-server: 
@@ -107,6 +110,7 @@ services:
     build: .
     ports:
       - "8002:9000"
+```
 
 Use of restart policies:
 on-failure => (workers nodes: example, a container that do a calculation and stops)
@@ -134,6 +138,7 @@ Volumes with docker run command:
 ** -v $(pwd): /app  says: “map the /app folder inside the container to the current work directory (pwd) outside the container
 
 Volumes with Docker compose:
+```yaml
 version: '3'
 services:
  webapp:
@@ -145,6 +150,7 @@ services:
    volumes:
      - /app/node_modules
      - .:/app
+```
  
 
 
@@ -153,7 +159,7 @@ b.PROD Dockerfile
 	It needs to have a “build” phase, where the docker builds a production version of the application.
 	It needs to use an appropriate production server, like NGINX.
 
-	
+```
 #phase 1: build phase
 FROM node:alpine as builder
 WORKDIR '/app'
@@ -168,7 +174,7 @@ FROM nginx
 EXPOSE 80
 #we copy all the production version build previously to the appropriate folder inside the nginx server container   
 COPY --from=builder /app/build /usr/share/ngnix/html
-
+```
 
 
 4.SINGLE CONTAINER APPLICATION
@@ -179,8 +185,8 @@ CONTINUOUS INTEGRATION FLOW
 For the continuous integration to work we need a CI server. In this case we use Travis CI. Any time we push code to the master branch in our git repository, Travis CI is called for execute the steps listed above.
 For Travis CI to work responsively to our “pushes” in the git repository, we have to add on configuration file (.travis.yml) in the root directory of our project.
 
+```yaml
 sudo: required
- 
 #os services são programas que o travis CI precisa ter para executar seu processo de integração contínua
 services:
     - docker
@@ -210,7 +216,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key:
         secure: "$AWS_SECRET_KEY"
-
+```
 
 Important: the Test phase occurs with the Development version of our application. NO TESTS should be done over the Production Version!
 
